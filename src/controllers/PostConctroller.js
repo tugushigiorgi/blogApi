@@ -8,16 +8,16 @@ exports.createpost=async (req,res)=>{
 
     const { title, description,categoryId } = req.body;
 
-  const IscategoryExist = await category.findOne({ categoryId });
+  const getcategory = await category.findOne({ categoryId });
 
 
-  if (!IscategoryExist)
+  if (!getcategory)
   return res.status(401).send({ message: "Category Not Found" });
 try{
   const post = new Post({
     title,
     description,
-    category: category,
+    category: getcategory,
   });
 
 
